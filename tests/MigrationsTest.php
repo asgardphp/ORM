@@ -155,7 +155,7 @@ class MigrationsTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testGenerateMigration() {
-		\Asgard\Common\FileManager::unlink(__DIR__.'/migrations/');
+		\Asgard\File\FileSystem::delete(__DIR__.'/migrations/');
 		$db = new \Asgard\Db\DB([
 			'host' => 'localhost',
 			'user' => 'root',
