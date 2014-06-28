@@ -1,10 +1,16 @@
 <?php
 namespace Asgard\Orm\Tests\I18nentities;
 
-class Commentaire extends \Asgard\Entity\Entity {
+class News extends \Asgard\Entity\Entity {
 	public static function definition(\Asgard\Entity\EntityDefinition $definition) {
 		$definition->properties = [
-			'titre',
+			'title',
+			'test'	=>	[
+				'i18n'	=>	true,
+				'validation' => [
+					'required'	=>	false,
+				]
+			],
 		];
 
 		$definition->behaviors = [
@@ -12,9 +18,9 @@ class Commentaire extends \Asgard\Entity\Entity {
 		];
 
 		$definition->relations = [
-			'actualite'	=>	[
-				'entity'	=>	'\Asgard\Orm\Tests\I18nentities\Actualite',
-				'has'	=>	'one',
+			'comments'	=>	[
+				'entity'	=>	'\Asgard\Orm\Tests\I18nentities\Comment',
+				'has'		=>	'many',
 			],
 		];
 	}
