@@ -1,5 +1,5 @@
 <?php
-namespace Asgard\Orm\Rules;
+namespace Asgard\Orm\Rule;
 
 /**
  * Verify that the entity exists in an ORM.

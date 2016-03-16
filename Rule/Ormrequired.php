@@ -1,5 +1,5 @@
 <?php
-namespace Asgard\Orm\Rules;
+namespace Asgard\Orm\Rule;
 
 /**
  * Verify that there is at least 1 entity.

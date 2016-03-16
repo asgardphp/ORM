@@ -1,5 +1,5 @@
 <?php
-namespace Asgard\Orm\Rules;
+namespace Asgard\Orm\Rule;
 
 /**
  * Verify that there is no other entity with the same attribute.

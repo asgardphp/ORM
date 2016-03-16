@@ -1,23 +1,23 @@
 <?php
-namespace Asgard\Orm\Rules;
+namespace Asgard\Orm\Rule;
 
 /**
- * Verify that there are less than x entities.
+ * Verify that there more less than x entities.
  * @author Michel Hognerud <michel@hognerud.com>
  */
-class Ormhaslessthan extends \Asgard\Validation\Rule {
+class Ormhasmorethan extends \Asgard\Validation\Rule {
 	/**
-	 * Maximum number of entities
+	 * Minimum number of entities
 	 * @var integer
 	 */
-	public $less;
+	public $more;
 
 	/**
 	 * Constructor.
-	 * @param integer $less
+	 * @param integer $more
 	 */
-	public function __construct($less) {
-		$this->less = $less;
+	public function __construct($more) {
+		$this->more = $more;
 	}
 
 	/**
@@ -29,13 +29,13 @@ class Ormhaslessthan extends \Asgard\Validation\Rule {
 		$attr = $validator->getName();
 		$orm = $dataMapper->related($entity, $attr);
 
-		return $orm->count() < $this->less;
+		return $orm->count() > $this->more;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function getMessage() {
-		return ':attribute must have less than :less elements.';
+		return ':attribute must have more than :more elements.';
 	}
 }

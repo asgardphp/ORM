@@ -1,11 +1,11 @@
 <?php
-namespace Asgard\Orm\Properties;
+namespace Asgard\Orm\Property;
 
 /**
  * ORM Entity Property.
  * @author Michel Hognerud <michel@hognerud.com>
  */
-class EntityProperty extends \Asgard\Entity\Properties\EntityProperty {
+class EntityProperty extends \Asgard\Entity\Property\EntityProperty {
 	/**
 	 * Entity definition.
 	 * @var \Asgard\Orm\DataMapperInterface

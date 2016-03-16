@@ -1,23 +1,23 @@
 <?php
-namespace Asgard\Orm\Commands;
+namespace Asgard\Orm\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
- * Automigrate command.
+ * Generate migration command.
  * @author Michel Hognerud <michel@hognerud.com>
  */
-class AutoMigrateCommand extends \Asgard\Console\Command {
+class PreviewMigrationCommand extends \Asgard\Console\Command {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected $name = 'orm:automigrate';
+	protected $name = 'orm:preview';
 	/**
 	 * {@inheritDoc}
 	 */
-	protected $description = 'Generate and run a migration from ORM entities';
+	protected $description = 'Preview a migration from ORM entities';
 	/**
 	 * Entities manager dependency.
 	 * @var \Asgard\Entity\EntityManagerInterface
@@ -62,17 +62,12 @@ class AutoMigrateCommand extends \Asgard\Console\Command {
 			if($definition->get('ormMigrate'))
 				$definitions[] = $definition;
 		}
-		$migration = $om->generateMigration($definitions, $migration);
-		if($mm->has($migration)) {
-			$this->info('The migration was successfully generated.');
+		$migration = $om->previewMigration($definitions, $migration);
 
-			if($mm->migrate($migration))
-				$this->info('Migration succeded.');
-			else
-				$this->error('Migration failed.');
-		}
+		if($migration === null)
+			$this->comment('There is nothing to migrate.');
 		else
-			$this->error('The migration could not be generated.');
+			echo $migration;
 	}
 
 	/**
